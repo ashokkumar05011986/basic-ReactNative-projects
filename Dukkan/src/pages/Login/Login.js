@@ -4,6 +4,7 @@ import {styles} from './Login.styles';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import {Formik} from 'formik';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Login = () => {
   function handleLogin(values) {
@@ -28,10 +29,12 @@ const Login = () => {
               value={values.username}
               onType={handleChange('username')}
             />
+            {/* <Icon name="key" size={30} /> */}
             <Input
               placeholder="Şifrenizi giriniz"
               value={values.password}
               onType={handleChange('password')}
+              isSecure
             />
             <Button text="GİRİŞ YAP" onPress={handleSubmit} />
           </View>
