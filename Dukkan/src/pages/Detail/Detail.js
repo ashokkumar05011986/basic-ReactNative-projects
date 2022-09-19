@@ -9,7 +9,7 @@ import Laoding from '../../components/Loading/Loading';
 const Detail = ({route}) => {
   console.log(route.params.id);
   const {id} = route.params;
-  const {loading, error, data} = useFetch(`${Config.API_URL}/${id}`);
+  const {loading, error, data} = useFetch(`${Config.API_PRODUCT_URL}/${id}`);
   console.log(data);
 
   if (loading) {

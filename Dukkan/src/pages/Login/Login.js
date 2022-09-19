@@ -1,14 +1,32 @@
-import {SafeAreaView, View, Image} from 'react-native';
+import {SafeAreaView, View, Image, Alert} from 'react-native';
 import React from 'react';
 import {styles} from './Login.styles';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import {Formik} from 'formik';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import usePost from '../../hooks/usePost';
+import Config from 'react-native-config';
 
-const Login = () => {
+const Login = ({navigation}) => {
+  const {data, loading, error, post} = usePost();
+
   function handleLogin(values) {
-    console.log(values);
+    console.log('values-->', values);
+    // e.preventDefault();
+    post(Config.API_AUTH_URL + '/login', values);
+  }
+  if (error) {
+    Alert.alert('Dükkan', 'Bir hata oluştu!');
+  }
+
+  if (data) {
+    if (data.status === 'Error') {
+      Alert.alert('Dükkan', 'Kullanıcı bulunamadı!');
+    } else {
+      navigation.navigate('ProductsScreen');
+    }
+    console.log('data -->', data);
   }
 
   return (
@@ -36,7 +54,7 @@ const Login = () => {
               onType={handleChange('password')}
               isSecure
             />
-            <Button text="GİRİŞ YAP" onPress={handleSubmit} />
+            <Button text="GİRİŞ YAP" onPress={handleSubmit} loading={loading} />
           </View>
         )}
       </Formik>
