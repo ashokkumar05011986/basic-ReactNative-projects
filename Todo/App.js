@@ -34,7 +34,7 @@ const App = () => {
     <View style={styles.container}>
       <View style={styles.taskWrapper}>
         <Text style={styles.sectionTitle}>Today's Tasks</Text>
-
+          <Text style={styles.sectionTitle}>Hello world please guide me how to learn RN </Text>
         <View styles={styles.items}>
           {taskItems.map((item, index) => (
             <TouchableOpacity key={index} onPress={() => complateTask()}>
